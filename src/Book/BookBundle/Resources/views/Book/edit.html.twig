@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+{% block tab_title %}Edit Book{% endblock %}
+{% block title %}Edit Book{% endblock %}
+{% block body %}
+    {#{{ dump() }}#}
+    {{ form(form) }}
+    <a class="btn btn-danger" role="button" href="{{ path('book_delete',{'id':book.id}) }}">Delete Book</a>
+{% endblock %}

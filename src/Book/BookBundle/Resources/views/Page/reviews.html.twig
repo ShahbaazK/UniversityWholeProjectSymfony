@@ -1,0 +1,27 @@
+{# src/Book/BookBundle/Resources/views/Page/index.html.twig #}
+{#{% extends 'BookBookBundle::layout.html.twig' %}#}
+{% extends '::base.html.twig' %}
+    {% block tab_title %}All Reviews{% endblock %}
+{% block title %}<b>All Reviews</b>{% endblock %}
+{% block body %}
+        {% if reviews %}
+            {% for row in reviews|batch(3) %}
+                <div class="row">
+                    {% for review in row %}
+                        <article>
+                            <h2><a href="{{ path('review_view',{id : review.id}) }}">
+                                    {{ review.title | title }}</a></h2>
+                            <p>{{ review.review | nl2br }}</p>
+                            <p>
+                                <small>Created by <b>{{ review.author }}</b> at
+                                    {{ review.timestamp | date('H:i d/m/y') }}</small>
+                            </p>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            {{ knp_pagination_render(reviews) }}
+        {% else %}
+            <div class="col-xs-12"><h4>No Reviews found!</h4></div>
+        {% endif %}
+{% endblock %}

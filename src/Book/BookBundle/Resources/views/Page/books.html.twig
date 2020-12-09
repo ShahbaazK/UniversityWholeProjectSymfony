@@ -1,0 +1,41 @@
+{# src/Book/BookBundle/Resources/views/Page/index.html.twig #}
+{#{% extends 'BookBookBundle::layout.html.twig' %}#}
+{% extends '::base.html.twig' %}
+{% block tab_title %}All Books{% endblock %}
+{% block title %}<b>All Books</b>{% endblock %}
+{% block body %}
+        {% if books %}
+            {% for row in books|batch(3) %}
+                <div class="row">
+                    {% for book in row %}
+                        <div class="col-xs-12 col-md-4">
+                            <a class="no-decor-link" href="{{ path('book_view',{id : book.id}) }}">
+                            <div class="thumbnail">
+                                <img src="{{ vich_uploader_asset(book, 'imageFile', 'Book\\BookBundle\\Entity\\Book') }}" class="img-responsive" style="max-width: 70%;"/>
+                                <div class="caption text-center">
+                                    <h4>{{ book.title | title }}</h4>
+                                    <h4>{{ book.author }}</h4>
+                                    <p>{{ book.summaryOfBook|split("", 80)|first }}...</p>
+                                </div>
+                                <div class="ratings">
+                                    <small>Added at {{ book.timestamp | date('H:i d/m/y') }}</small>
+                                    <p class="pull-right">{{ book.reviews|length }} reviews</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            {{ knp_pagination_render(books) }}
+        {% else %}
+            <div class="col-xs-12"><h4>No Books Stored Yet!</h4></div>
+        {% endif %}
+{% endblock %}

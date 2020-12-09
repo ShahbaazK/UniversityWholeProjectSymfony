@@ -1,0 +1,74 @@
+{# src/Book/BookBundle/Resources/views/Page/index.html.twig #}
+{#{% extends 'BookBookBundle::layout.html.twig' %}#}
+{% extends '::base.html.twig' %}
+    {% block tab_title %}Index Page{% endblock %}
+{% block title %}<b>Welcome to Reviewed!</b>{% endblock %}
+{% block body %}
+    <div class="col-xs-12">
+    <div class="col-xs-12"><h2><b>Latest Books</b></h2></div>
+        {% if (books) %}
+            {% for book in books %}
+            <div class="col-xs-12 col-md-4">
+                <a class="no-decor-link" href="{{ path('book_view',{id : book.id}) }}">
+                <div class="thumbnail">
+                    <img src="{{ vich_uploader_asset(book, 'imageFile', 'Book\\BookBundle\\Entity\\Book') }}" class="img-responsive" />
+                    <div class="caption text-center">
+                        <h4>{{ book.title | title }}</h4>
+                        <h4>{{ book.author }}</h4>
+                        <p>{{ book.summaryOfBook|split("", 80)|first }}...</p>
+                    </div>
+                    <div class="ratings">
+                        <small>Added at {{ book.timestamp | date('H:i d/m/y') }}</small>
+                        <p class="pull-right">{{ book.reviews|length }} reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-xs-12"><h4>No Books Stored Yet!</h4></div>
+        {% endif %}
+    </div>
+    {% if books %}
+        <div class="col-xs-12">
+            <div class="pull-right see-all-link">
+                <b><h4><a href="{{ path('book_list') }}">All books <span>&#10145;</span></a></h4></b>
+            </div>
+        </div>
+    {% endif %}
+    <div class="col-xs-12">
+        <div class="col-xs-12"><h2><b>Latest Reviews</b></h2></div>
+        <div class="col-xs-12">
+        {% if (reviews) %}
+            {% for review in reviews %}
+                <article>
+                    <h2><a href="{{ path('review_view',{id : review.id}) }}">
+                            {{ review.title | title }}</a></h2>
+                    <p>{{ review.review|split("", 425)|first  | nl2br }}...</p>
+                    <p>
+                        <small class="pull-right">Reviewed by <b>{{ review.author }}</b></small>
+                            {#at {{ review.timestamp | date('H:i d/m/y') }}</small>#}
+                    </p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="col-xs-12"><h4>No Reviews Made Yet!</h4></div>
+        {% endif %}
+        </div>
+    </div>
+    {% if reviews %}
+        <div class="col-xs-12">
+            <br>
+            <div class="pull-right see-all-link">
+                <b><h4><a href="{{ path('review_list') }}">All reviews <span>&#10145;</span></a></h4></b>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/awd_book_reviews/src/AppBundle" isTestSource="false" packagePrefix="AppBundle\" />
+      <sourceFolder url="file://$MODULE_DIR$/awd_book_reviews/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/awd_book_reviews/tests" isTestSource="true" packagePrefix="Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/awd_book_reviews/vendor/doctrine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/awd_book_reviews/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/awd_book_reviews/vendor/zendframework/zend-code" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

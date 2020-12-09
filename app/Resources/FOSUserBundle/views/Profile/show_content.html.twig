@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <h3>{{ 'profile.show.username'|trans }}</h3><span>{{ user.username }}</span>
+    <h3>{{ 'profile.show.email'|trans }}</h3><span>{{ user.email }}</span>
+    <br>
+    <br>
+    <a class="btn btn-primary" role="button" href="{{ path('fos_user_profile_edit',{'id':user.id}) }}">Edit Details</a>
+</div>

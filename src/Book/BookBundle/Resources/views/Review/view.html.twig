@@ -1,0 +1,16 @@
+{# src/Book/BookBundle/Resources/views/Blog/view.html.twig #}
+{% extends '::base.html.twig' %}
+{% block title %}{{ review.title }}{% endblock %}
+{% block page_title %}{{ review.title }}{% endblock %}
+{% block body %}
+    <p>{{ review.review | nl2br }}</p>
+    <p><small>Created by {{ review.author }} at
+            {{ review.timestamp|date('H:i d/m/y') }}
+        </small>
+    </p>
+    {#If user is logged in and he made the review he can edit or delete it#}
+    {% if(app.user and review.author.username == app.user.username) %}
+        <a class="btn btn-primary" role="button" href="{{ path('review_edit',{'id':review.id}) }}">Edit Review</a>
+        <a class="btn btn-danger" role="button" href="{{ path('review_delete',{'id':review.id}) }}">Delete Review</a>
+    {% endif %}
+{% endblock %}

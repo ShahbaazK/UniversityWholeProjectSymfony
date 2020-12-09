@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Book\BookBundle\:
+        resource: '../../../../../src/Book/BookBundle/*'
+        exclude: '../../../../../src/Book/BookBundle/{Entity,Repository,Tests}'
+
+    Book\BookBundle\Controller\:
+        resource: '../../../../../src/Book/BookBundle/Controller'
+        tags: ['controller.service_arguments']
+
+    Book\BookBundle\Repository\BookRepository: ~
+    Book\BookBundle\Repository\ReviewRepository: ~
+    Book\BookBundle\Services\PaginationService: ~

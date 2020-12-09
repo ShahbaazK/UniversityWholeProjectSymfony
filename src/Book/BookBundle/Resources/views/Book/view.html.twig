@@ -1,0 +1,65 @@
+ {# src/Book/BookBundle/Resources/views/Blog/view.html.twig #}
+{% extends '::base.html.twig' %}
+{% block tab_title %}{{ book.title }}{% endblock %}
+{% block title %}View Book{% endblock %}
+{% block body %}
+    <br>
+    <div class="col-xs-12 col-md-3"></div>
+    <div class="col-xs-12 col-md-3">
+        <img src="{{ vich_uploader_asset(book, 'imageFile', 'Book\\BookBundle\\Entity\\Book') }}" class="img-responsive" />
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="caption">
+            <h2>Title</h2>
+            <h4>{{ book.title }}</h4>
+            <h2>Author</h2>
+            <h4>{{ book.author }}</h4>
+            <h2>ISBN Number</h2>
+            <h4>{{ book.isbn }}</h4>
+            <h2>Summary of book</h2>
+            <p>{{ book.summaryOfBook }}</p>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-primary" role="button" href="{{ path('book_edit',{'id':book.id}) }}">Edit Book</a>
+                <a class="btn btn-danger" role="button" href="{{ path('book_delete',{'id':book.id}) }}">Delete Book</a>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <a class="btn btn-success" role="button" href="{{ path('review_create',{'id': book.id}) }}">Review Book</a>
+            {% endif %}
+        </div>
+        <br>
+        <small>Added at {{ book.timestamp | date('H:i d/m/y') }}</small>
+        <p>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <br>
+        <br>
+        <div class="col-xs-12"><h2><b>Reviews</b></h2></div>
+        <div class="col-xs-12">
+            {% if (reviews.items) %}
+                {% for review in reviews.items %}
+                    <article>
+                        <h2><a href="{{ path('review_view',{id : review.id}) }}">
+                                {{ review.title | title }}</a></h2>
+                        <p>{{ review.review | nl2br }}</p>
+                        <p>
+                            <small>Created by {{ review.author }} at
+                                {{ review.timestamp | date('H:i d/m/y') }}</small>
+                        </p>
+                    </article>
+                {% endfor %}
+                {{ knp_pagination_render(reviews) }}
+            {% else %}
+                <div class="col-xs-12"><h4>No Reviews Made Yet!</h4></div>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+{% endblock %}

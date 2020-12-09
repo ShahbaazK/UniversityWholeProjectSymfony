@@ -1,0 +1,6 @@
+{% extends '::base.html.twig' %}
+{% block tab_title %}View My Profile{% endblock %}
+{% block title %}View My Profile{% endblock%}
+{% block body %}
+    {{ include('@FOSUser/Profile/show_content.html.twig') }}
+{% endblock %}

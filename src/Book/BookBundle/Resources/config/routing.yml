@@ -1,0 +1,71 @@
+#Specify these individually to get individual routes! Then you can change these to things like:
+# /user/register
+# /user/login
+# /user/profile
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#Site
+index:
+  path:     /
+  defaults: { _controller: BookBookBundle:Default:index }
+
+about:
+  path: /about
+  defaults: { _controller: BookBookBundle:Default:about }
+
+#Reviews
+review_view:
+  path:     /review/view/{id}
+  defaults: { _controller: BookBookBundle:Review:view }
+  requirements:
+    id: \d+
+
+review_list:
+  path:     /review/list
+  defaults: { _controller: BookBookBundle:Review:listAllReviews }
+
+review_create:
+  path:     /review/create/{id}
+  defaults: { _controller: BookBookBundle:Review:create }
+  requirements:
+    id: \d+
+
+review_edit:
+  path:     /review/edit/{id}
+  defaults: { _controller: BookBookBundle:Review:edit }
+  requirements:
+    id: \d+
+
+review_delete:
+  path:     /review/delete/{id}
+  defaults: { _controller: BookBookBundle:Review:delete }
+  requirements:
+    id: \d+
+
+#Books
+book_view:
+  path:     /book/view/{id}
+  defaults: { _controller: BookBookBundle:Book:view }
+  requirements:
+    id: \d+
+
+book_list:
+  path:     /book/list
+  defaults: { _controller: BookBookBundle:Book:listAllBooks }
+
+book_create:
+  path:     /book/create
+  defaults: { _controller: BookBookBundle:Book:create }
+
+book_edit:
+  path:     /book/edit/{id}
+  defaults: { _controller: BookBookBundle:Book:edit }
+  requirements:
+    id: \d+
+
+book_delete:
+  path:     /book/delete/{id}
+  defaults: { _controller: BookBookBundle:Book:delete }
+  requirements:
+    id: \d+

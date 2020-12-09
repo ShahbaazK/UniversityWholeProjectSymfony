@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: helios.csesalford.com
+    database_port: 3306
+    database_name: stc422_advanced_web_dev
+    database_user: stc422
+    database_password: Azy2k9azy2k91.
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: test
+    mailer_password: null
+    secret: 6c215a883f9ecdbbade27816358568770249d428
